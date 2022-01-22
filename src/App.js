@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import UsersList from './components/UsersList';
+import UsersForm from './components/UsersForm';
 
-function App() {
+const App = () => {
+
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    axios.get('https://users-crud1.herokuapp.com/users/')
+      .then(res => setUsers(res.data))
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {users && <UsersList users={users} />}
+      <UsersForm />
     </div>
   );
 }
