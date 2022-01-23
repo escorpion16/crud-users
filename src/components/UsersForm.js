@@ -1,65 +1,54 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
 import "../styles/usersForm.css";
+import { useForm } from "react-hook-form";
 
-const UsersForm = ({ userSelected, getUsers }) => {
+const defaultValues = {
+    first_name: "",
+    last_name:"",
+    email:"",
+    password:"",
+    birthday:""
+}
 
-    const [name, setName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("")
-    const [birthday, setBirthday] = useState("");
+const UsersForm = ({ userSelected, getUsers, deselectUser }) => {
+    
+    const {register, handleSubmit, reset} = useForm();
 
     useEffect(() => {
-        if(userSelected !== null){
-            setName(userSelected.first_name);
-            setLastName(userSelected.last_name);
-            setEmail(userSelected.email);
-            setPassword(userSelected.password);
-            setBirthday(userSelected.birthday)
+        if(userSelected){
+            reset(userSelected)
+        }else{
+            reset(defaultValues)
         }
-    }, [userSelected])
+    }, [userSelected, reset])
 
-    const submit = e => {
-        e.preventDefault()
-
-        const user = {
-            first_name: name,
-            last_name: lastName,
-            email,
-            password,
-            birthday
-        }
+    const submit = user => {
 
         if(userSelected){
             axios.put(`https://users-crud1.herokuapp.com/users/${userSelected.id}/`, user)
-                .then(() => getUsers())
+                .then(() => {
+                    getUsers()
+                    deselectUser()
+                })
+                    
         }else {
             axios.post('https://users-crud1.herokuapp.com/users/', user)
             .then(() => getUsers())
         }
 
-        reset()
+        reset(defaultValues)
     }
 
-    const reset = () => {
-        setName("")
-        setLastName("")
-        setEmail("")
-        setPassword("")
-        setBirthday("")
-    }
 
     return (
-        <form className="user-form" onSubmit={submit}>
+        <form className="user-form" onSubmit={handleSubmit(submit)}>
             <div className="input-form">
                 <label htmlFor="name">Nombre</label>
                 <input 
                     type="text" 
                     id="name"
-                    value={name}
-                    onChange={e => setName(e.target.value)} 
+                    {...register("first_name")}
                 />
             </div>
 
@@ -68,8 +57,7 @@ const UsersForm = ({ userSelected, getUsers }) => {
                 <input 
                     type="text" 
                     id="lastName" 
-                    value={lastName}
-                    onChange={e => setLastName(e.target.value)}
+                    {...register("last_name")}
                 />
             </div>
 
@@ -78,8 +66,7 @@ const UsersForm = ({ userSelected, getUsers }) => {
                 <input 
                     type="email" 
                     id="email" 
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    {...register("email")}
                 />
             </div>
 
@@ -88,8 +75,7 @@ const UsersForm = ({ userSelected, getUsers }) => {
                 <input 
                     type="password" 
                     id="password" 
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    {...register("password")}
                 />
             </div>
 
@@ -98,8 +84,7 @@ const UsersForm = ({ userSelected, getUsers }) => {
                 <input 
                     type="date" 
                     id="birthday"
-                    value={birthday}
-                    onChange={e => setBirthday(e.target.value)} 
+                    {...register("birthday")}
                 />
             </div>
 

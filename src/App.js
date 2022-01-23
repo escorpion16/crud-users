@@ -26,10 +26,11 @@ const App = () => {
 
   const selectUser = user => setUserSelected(user)
 
+  const deselectUser = () => setUserSelected(null)
   return (
     <div className="App">
+      <UsersForm userSelected={userSelected} getUsers={getUsers} deselectUser={deselectUser} />
       {users && <UsersList users={users} selectUser={selectUser} deleteUser={deleteUser} />}
-      <UsersForm userSelected={userSelected} getUsers={getUsers} />
     </div>
   );
 }
