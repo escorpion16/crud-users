@@ -43,44 +43,51 @@ const UsersForm = ({ userSelected, getUsers, deselectUser }) => {
 
     return (
         <form className="user-form" onSubmit={handleSubmit(submit)}>
-            <div className="input-form">
-                <label htmlFor="name">Nombre</label>
-                <input 
-                    type="text" 
-                    id="name"
-                    {...register("first_name")}
-                />
-            </div>
+            <h3>New User</h3>
+            <div className="name-user-container">
+                <i className="fas fa-user"></i>
+                <div className="input-form">
+                    
+                    <input 
+                        type="text" 
+                        id="name"
+                        placeholder="first name"
+                        {...register("first_name")}
+                    />
+                </div>
 
-            <div className="input-form">
-                <label htmlFor="lastName">Apellido</label>
-                <input 
-                    type="text" 
-                    id="lastName" 
-                    {...register("last_name")}
-                />
+                <div className="input-form input-lastname">
+                    <input 
+                        type="text" 
+                        id="lastName" 
+                        placeholder="last name"
+                        {...register("last_name")}
+                    />
+                </div>
             </div>
-
+            
             <div className="input-form">
-                <label htmlFor="email">Email</label>
+                <i className="fas fa-envelope"></i>
                 <input 
                     type="email" 
                     id="email" 
+                    placeholder="email"
                     {...register("email")}
                 />
             </div>
 
             <div className="input-form">
-                <label htmlFor="password">Contraseña</label>
+                <i className="fas fa-lock"></i>
                 <input 
                     type="password" 
                     id="password" 
+                    placeholder="password"
                     {...register("password")}
                 />
             </div>
 
             <div className="input-form">
-                <label htmlFor="birthday">Fecha de nacimiento</label>
+                <i className="fas fa-birthday-cake"></i>
                 <input 
                     type="date" 
                     id="birthday"

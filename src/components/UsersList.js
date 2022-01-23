@@ -8,7 +8,7 @@ const UsersList = ({ users, selectUser, deleteUser }) => {
                     <div className="card-info">
                         <div><strong>{user.first_name} {user.last_name}</strong></div>
                         <div>{user.email}</div>
-                        <div> <i class="fas fa-birthday-cake"></i> {user.birthday}</div>
+                        <div> <i className="fas fa-birthday-cake"></i> {user.birthday}</div>
                     </div>
                     <div className="card-buttons">
                         <button className="delete-btn" onClick={() => deleteUser(user)}> <i className="fas fa-trash"></i> </button>

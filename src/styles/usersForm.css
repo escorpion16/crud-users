@@ -4,5 +4,23 @@
     height: 100vh;
     width: 40vw;
     justify-content: center;
+    align-items: flex-start;
+    margin: 0 1.2rem;
+}
+
+.name-user-container {
+    display: flex;
     align-items: center;
+}
+
+.input-form #lastName {
+    margin-left: .3rem;
+}
+
+.user-form .input-form {
+    margin: .5rem 0;
+}
+
+.user-form i {
+    margin-right: .3rem;
 }
