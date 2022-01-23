@@ -1,0 +1,38 @@
+.users-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60vw;
+}
+
+.users-container .user-card {
+    border: .5px solid #000;
+    border-radius: 10px;
+    margin: .5rem 1rem;
+    padding: 1rem 2rem;
+    list-style: none;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-card .card-info {
+    text-align: left;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 15%;
+}
+
+.card-buttons .fa-trash {
+    color: red;
+}
+
+.card-buttons .fa-edit {
+    color: #3C3C3C;
+}
+
