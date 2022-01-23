@@ -1,6 +1,6 @@
 import "../styles/usersList.css";
 
-const UsersList = ({ users }) => {
+const UsersList = ({ users, selectUser, deleteUser }) => {
     return (
         <ul>
             {users.map(user => 
@@ -8,8 +8,8 @@ const UsersList = ({ users }) => {
                     <div><strong>{user.first_name} {user.last_name}</strong></div>
                     <div>{user.email}</div>
                     <div>{user.birthday}</div>
-                    <button className="delete-btn">Delete</button>
-                    <button className="edit-btn">Edit</button>
+                    <button className="delete-btn" onClick={() => deleteUser(user)}>Delete</button>
+                    <button className="edit-btn" onClick={() => selectUser(user)}>Edit</button>
                 </li>
             )}
         </ul>
